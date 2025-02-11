@@ -21,7 +21,7 @@ public class UserDaoJDBCImpl implements UserDao {
                      "id SERIAL PRIMARY KEY, " +
                      "name VARCHAR(50), " +
                      "lastName VARCHAR(50), " +
-                     "age TINYINT)";
+                     "age SMALLINT)";
 
         try(Connection connection = Util.getConnection(); // Устанавливаем соединение с БД
             Statement statement = connection.createStatement()){ // Создаем объект Statement для выполнения SQL-запросов
@@ -40,6 +40,7 @@ public class UserDaoJDBCImpl implements UserDao {
         try(Connection connection = Util.getConnection();
             Statement statement = connection.createStatement()){
             statement.executeUpdate(sql); // Выполняем SQL-запрос на удаление таблицы
+            System.out.println("Table was successfully dropped");
         } catch(SQLException e){
             e.printStackTrace();
         }
@@ -110,6 +111,7 @@ public class UserDaoJDBCImpl implements UserDao {
         try(Connection connection = Util.getConnection();
         Statement statement = connection.createStatement()){
             statement.executeUpdate(sql);  // Выполняем запрос на очистку таблицы
+            System.out.println("Table was successfully cleaned");
         }catch (SQLException e){
             e.printStackTrace();
         }

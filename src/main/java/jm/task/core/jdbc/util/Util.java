@@ -4,10 +4,6 @@ import jm.task.core.jdbc.model.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
 //Класс для работы с подключением к базе данных
 public class Util {
     private static SessionFactory sessionFactory = buildSessionFactory();
@@ -34,6 +30,6 @@ public class Util {
     }
 
     public static void shutdown(){
-        sessionFactory.close();
+        getSessionFactory().close();
     }
 }

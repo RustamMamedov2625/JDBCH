@@ -6,19 +6,12 @@ import org.hibernate.cfg.Configuration;
 
 //Класс для работы с подключением к базе данных
 public class Util {
-    private static SessionFactory sessionFactory = buildSessionFactory();
+    private static final SessionFactory sessionFactory = buildSessionFactory();
 
     private static SessionFactory buildSessionFactory() {
         try {
             Configuration configuration = new Configuration();
-            configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-            configuration.setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
-            configuration.setProperty("hibernate.connection.URL", "jdbc:postgresql://localhost:5432/postgres");
-            configuration.setProperty("hibernate.connection.username", "postgres");
-            configuration.setProperty("hibernate.connection.password", "251005");
-            configuration.setProperty("hibernate.hbm2ddl.auto", "update");
-            configuration.addAnnotatedClass(User.class);
-
+            configuration.configure(); // Загружает настройки из hibernate.cfg.xml
             return configuration.buildSessionFactory();
         }catch (Throwable e) {
             throw new ExceptionInInitializerError(e);
